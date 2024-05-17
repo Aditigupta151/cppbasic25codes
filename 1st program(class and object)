@@ -1,0 +1,31 @@
+//cpp program for class and object where member function are define inside a class
+#include<iostream>
+using namespace std;
+class item
+{
+    int number;//private
+    float cost;//private
+    public:
+    void getdata(int a , float b)
+    {
+        number=a;
+        cost = b;
+    }
+    void putdata()
+    {
+        std::cout<<"number is :"<<number<<"\n";
+        std::cout<<"cost of product is:"<<cost<<"\n";
+    }
+    
+};
+
+int main(){
+    item x;//create object x
+    x.getdata(50,440.4);
+    x.putdata();
+    
+    item y;//create object y
+    y.getdata(50,323.9);
+    y.putdata();
+    return 0;
+}
