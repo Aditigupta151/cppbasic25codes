@@ -1,0 +1,56 @@
+// program for multiple inheritance
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class 1
+class Person {
+protected:
+    string name;
+
+public:
+    Person(const string& n) : name(n) {}
+
+    void displayPerson() {
+        cout << "Name: " << name << endl;
+    }
+};
+
+// Base class 2
+class Student {
+protected:
+    int studentID;
+
+public:
+    Student(int id) : studentID(id) {}
+
+    void displayStudent() {
+        cout << "Student ID: " << studentID << endl;
+    }
+};
+
+// Derived class inheriting from both Person and Student
+class CollegeStudent : public Person, public Student {
+private:
+    string collegeName;
+
+public:
+    CollegeStudent(const string& n, int id, const string& college)
+        : Person(n), Student(id), collegeName(college) {}
+
+    void displayCollegeStudent() {
+        displayPerson(); // Accessing base class method
+        displayStudent(); // Accessing base class method
+        cout << "College Name: " << collegeName << endl;
+    }
+};
+
+int main() {
+    // Creating an object of the derived class
+    CollegeStudent student("ram", 12345, "Amity University");
+
+    // Accessing methods of all classes
+    student.displayCollegeStudent();
+
+    return 0;
+}
