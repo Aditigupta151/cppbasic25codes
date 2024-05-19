@@ -1,0 +1,46 @@
+// program for demonstrating decrement operator overloading
+#include <iostream>
+
+class StockItem {
+private:
+    std::string itemName;
+    int quantity;
+
+public:
+    // Constructor
+    StockItem(const std::string& name, int initialQuantity) : itemName(name), quantity(initialQuantity) {}
+
+    StockItem& operator--() {
+        if (quantity > 0) {
+            quantity--;
+        }
+        return *this;
+    }
+
+    
+    StockItem operator--(int) {
+        StockItem temp = *this;
+        if (quantity > 0) {
+            quantity--;
+        }
+        return temp;
+    }
+
+    // Function to display stock details
+    void display() {
+        std::cout << "Item: " << itemName << ", Quantity: " << quantity << std::endl;
+    }
+};
+
+int main() {
+    StockItem item("Widget", 5);
+    --item;
+    item.display();
+
+    
+    StockItem item2 = item--;
+    item2.display(); // Displaying the old value
+    item.display();  // Displaying the updated value
+
+    return 0;
+}
