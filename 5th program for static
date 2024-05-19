@@ -1,0 +1,22 @@
+// program of static variable
+#include<iostream>
+class demo
+{
+    static int s;
+    static float f;
+    
+    public:
+    static void show()
+    {
+        std::cout<<"s="<<s<<"\n";
+        std::cout<<"f="<<f<<"\n";
+    }
+};
+
+int demo:: s=100;
+float demo::f=300.00;
+
+int main(){
+    demo :: show();
+    return 0;
+}
