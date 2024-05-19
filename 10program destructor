@@ -1,0 +1,24 @@
+// program for demonstrating destructor
+
+#include <iostream>
+
+class MyClass {
+public:
+    // Constructor
+    MyClass() {
+        std::cout << "Constructor called" << std::endl;
+    }
+    
+    // Destructor
+    ~MyClass() {
+        std::cout << "Destructor called" << std::endl;
+    }
+};
+
+int main() {
+    // Creating an object of MyClass
+    MyClass obj;
+
+    // Program ends, destructor will be called automatically when obj goes out of scope
+    return 0;
+}
