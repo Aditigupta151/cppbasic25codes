@@ -1,0 +1,29 @@
+// program for parameterized consructor
+#include <iostream>
+#include <string>
+
+class Person {
+private:
+    std::string name;
+    int age;
+
+public:
+    // Parameterized constructor
+    Person(const std::string& name, int age) : name(name), age(age) {}
+
+    // Method to display person's details
+    void display() const {
+        std::cout << "Name: " << name << ", Age: " << age << std::endl;
+    }
+};
+
+int main() {
+    // Create a person with parameters
+    Person person1("Alice", 30);
+
+    // Display details of the person
+    std::cout << "Person 1: ";
+    person1.display();
+
+    return 0;
+}
