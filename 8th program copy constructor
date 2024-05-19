@@ -1,0 +1,40 @@
+// program for copy constructor
+
+#include <iostream>
+#include <string>
+
+class Person {
+private:
+    std::string name;
+    int age;
+
+public:
+    // Constructor
+    Person(const std::string& name, int age) : name(name), age(age) {}
+
+    // Copy constructor
+    Person(const Person& other) : name(other.name), age(other.age) {
+        std::cout << "Copy constructor called" << std::endl;
+    }
+
+    // Method to display person's details
+    void display() const {
+        std::cout << "Name: " << name << ", Age: " << age << std::endl;
+    }
+};
+
+int main() {
+    // Create a person
+    Person person1("Alice", 30);
+
+    // Create another person by copying person1
+    Person person2 = person1;
+
+    // Display details of both persons
+    std::cout << "Person 1: ";
+    person1.display();
+    std::cout << "Person 2: ";
+    person2.display();
+
+    return 0;
+}
