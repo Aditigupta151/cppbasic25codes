@@ -1,0 +1,44 @@
+// program for demonstrating increment operator overloading
+#include <iostream>
+
+class Counter {
+private:
+    int count;
+
+public:
+    // Constructor
+    Counter() : count(0) {}
+
+    // Overloading the prefix increment operator (++count)
+    Counter& operator++() {
+        count++;
+        return *this;
+    }
+
+    // Overloading the postfix increment operator (count++)
+    Counter operator++(int) {
+        Counter temp = *this;
+        ++(*this);
+        return temp;
+    }
+
+    // Function to display the count
+    void display() {
+        std::cout << "Count: " << count << std::endl;
+    }
+};
+
+int main() {
+    Counter c1;
+
+    // Using prefix increment operator (++count)
+    ++c1;
+    c1.display();
+
+    // Using postfix increment operator (count++)
+    Counter c2 = c1++;
+    c2.display(); // Displaying the old value
+    c1.display(); // Displaying the updated value
+
+    return 0;
+}
