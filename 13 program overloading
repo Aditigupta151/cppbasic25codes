@@ -1,0 +1,63 @@
+// program for demonstrating both increment and decrement operator overloading
+#include <iostream>
+
+class Counter {
+private:
+    int count;
+
+public:
+    // Constructor
+    Counter(int initialCount = 0) : count(initialCount) {}
+    Counter& operator++() {
+        count++;
+        return *this;
+    }
+
+    
+    Counter operator++(int) {
+        Counter temp = *this;
+        ++(*this);
+        return temp;
+    }
+
+    
+    Counter& operator--() {
+        if (count > 0) {
+            count--;
+        }
+        return *this;
+    }
+
+    Counter operator--(int) {
+        Counter temp = *this;
+        if (count > 0) {
+            count--;
+        }
+        return temp;
+    }
+
+    // Function to display the count
+    void display() {
+        std::cout << "Count: " << count << std::endl;
+    }
+};
+
+int main() {
+    Counter c(5);
+    ++c;
+    c.display();
+
+  
+    Counter c1 = c++;
+    c1.display(); // Displaying the old value
+    c.display();  // Displaying the updated value
+    --c;
+    c.display();
+
+    
+    Counter c2 = c--;
+    c2.display(); // Displaying the old value
+    c.display();  // Displaying the updated value
+
+    return 0;
+}
