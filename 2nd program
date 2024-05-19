@@ -1,0 +1,33 @@
+// program for deefining function outside the class
+#include<iostream>
+class demo
+{
+  int num;// private
+  public:
+  
+  void input(int x)
+  {
+      num = x;
+  }
+  void copy(demo);// declaring
+  void show(){
+      std::cout<<"number is :"<<num<<"\n";
+  }
+};
+// defining outside the class
+void demo::copy(demo d)
+{
+    num = d.num;
+}
+int main()
+{
+    demo d1,d2;
+    d1.input(20);
+    d2.copy(d1);
+    std::cout<<"object d1\n";
+    d1.show();
+    std::cout<<"object d2\n";
+    d2.show();
+    
+    return 0;
+}
