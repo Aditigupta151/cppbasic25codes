@@ -1,0 +1,39 @@
+// program of friend function
+
+#include<iostream>
+class square;
+class first
+{
+    int num; // private
+    public:
+    void inputf()
+    {
+        num = 20;
+    }
+    void show(square);
+};
+class square{
+    int num;
+    public:
+    void inputs(int x)
+    {
+        num = x;
+    }
+    // friend function use
+    friend void first:: show(square);
+};
+void first :: show(square s)
+{
+    std:: cout<<"num of class first ="<<num<<"\n";
+    s.inputs(num*num);
+    std::cout<<"num of class square="<<s.num<<"\n";
+}
+
+int main()
+{
+    first f;
+    f.inputf();
+    square s;
+    f.show(s);
+    return 0;
+}
