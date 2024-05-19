@@ -1,0 +1,14 @@
+// program using inline function
+
+#include<iostream>
+inline int square(int x) // inline function
+{
+    return x*x;
+}
+int main(){
+    int num , snum;
+    std::cout<<"enter a number \n";
+    std::cin>>num;
+    std::cout<<"square of a number\t"<<num<<"\tis\t"<<square(num);
+    return 0;
+}
