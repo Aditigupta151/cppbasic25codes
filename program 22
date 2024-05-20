@@ -1,0 +1,27 @@
+// program for calculating marks by template function
+#include <iostream>
+#include <vector>
+
+// Function template to calculate the average marks
+template <typename T>
+T calculateAverage(const std::vector<T>& marks) {
+    T total = 0;
+    for (const auto& mark : marks) {
+        total += mark;
+    }
+    return total / marks.size();
+}
+
+int main() {
+    // Marks of students in a test
+    std::vector<int> intMarks = {85, 90, 78, 95, 88};
+    std::vector<float> floatMarks = {78.5, 89.3, 67.8, 92.0, 85.5};
+
+    int intAverage = calculateAverage(intMarks);
+    float floatAverage = calculateAverage(floatMarks);
+
+    std::cout << "Average marks of integer test: " << intAverage << std::endl;
+    std::cout << "Average marks of floating-point test: " << floatAverage << std::endl;
+
+    return 0;
+}
