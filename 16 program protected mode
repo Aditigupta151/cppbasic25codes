@@ -1,0 +1,40 @@
+// program for demonstrating protected mode in multilevel inheritance
+#include <iostream>
+using namespace std;
+
+// Base class
+class Base {
+protected:
+    int protectedData;
+public:
+    Base(int data) : protectedData(data) {}
+};
+
+// Derived class
+class Derived : protected Base {
+public:
+    Derived(int data) : Base(data) {}
+
+    void display() {
+        // Accessing protected data member of Base class
+        cout << "Protected data in Derived class: " << protectedData << endl;
+    }
+};
+
+
+class FurtherDerived : public Derived {
+public:
+    FurtherDerived(int data) : Derived(data) {}
+
+    void show() {
+        
+        cout << "Protected data in FurtherDerived class: " << protectedData << endl;
+    }
+};
+
+int main() {
+    FurtherDerived obj(20);
+    obj.display(); // Accessing protected data of Base class through Derived
+    obj.show();    // Accessing protected data of Base class
+    return 0;
+}
