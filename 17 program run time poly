@@ -1,0 +1,62 @@
+// program for demonstrating run time polymorphisism in class shape
+#include <iostream>
+using namespace std;
+
+// Base class
+class Shape {
+public:
+    
+    virtual float calculateArea() = 0; // Pure virtual function
+    
+    virtual void displayInfo() = 0; // Pure virtual function
+};
+
+// Derived class Circle
+class Circle : public Shape {
+private:
+    float radius;
+public:
+    // Constructor
+    Circle(float r) : radius(r) {}
+
+    // Override calculateArea function
+    float calculateArea() override {
+        return 3.14 * radius * radius;
+    }
+
+    
+    void displayInfo() override {
+        cout << "Circle with radius " << radius << endl;
+    }
+};
+
+// Derived class Rectangle
+class Rectangle : public Shape {
+private:
+    float length, width;
+public:
+    // Constructor
+    Rectangle(float l, float w) : length(l), width(w) {}
+
+    float calculateArea() override {
+        return length * width;
+    }
+
+    void displayInfo() override {
+        cout << "Rectangle with length " << length << " and width " << width << endl;
+    }
+};
+
+int main() {
+    // Creating objects of Circle and Rectangle
+    Shape *shape1 = new Circle(5);
+    Shape *shape2 = new Rectangle(4, 6);
+
+    cout << "Area of shape1: " << shape1->calculateArea() << endl;
+    shape1->displayInfo();
+
+    cout << "Area of shape2: " << shape2->calculateArea() << endl;
+    shape2->displayInfo();
+
+    return 0;
+}
