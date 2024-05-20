@@ -1,0 +1,86 @@
+// program for runtime polymorphisism in bank account
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class
+class Account {
+protected:
+    string accountNumber;
+    float balance;
+public:
+    Account(const string& accNum, float bal) : accountNumber(accNum), balance(bal) {}
+
+    // Virtual function for displaying account information
+    virtual void displayInfo() {
+        cout << "Account Number: " << accountNumber << endl;
+        cout << "Balance: $" << balance << endl;
+    }
+
+    // Virtual function for calculating interest
+    virtual float calculateInterest() = 0; // Pure virtual function
+};
+
+// Derived class for savings account
+class SavingsAccount : public Account {
+private:
+    float interestRate;
+public:
+    SavingsAccount(const string& accNum, float bal, float rate) : Account(accNum, bal), interestRate(rate) {}
+
+    
+    void displayInfo() override {
+        cout << "Savings Account" << endl;
+        Account::displayInfo();
+    }
+
+    float calculateInterest() override {
+        return balance * (interestRate / 100);
+    }
+};
+
+class CheckingAccount : public Account {
+private:
+    float serviceCharge;
+public:
+    CheckingAccount(const string& accNum, float bal, float charge) : Account(accNum, bal), serviceCharge(charge)
+    void displayInfo() override {
+        cout << "Checking Account" << endl;
+        Account::displayInfo();
+    }
+
+    float calculateInterest() override {
+        
+        return 0;
+    }
+
+    
+    void deductServiceCharge() {
+        balance -= serviceCharge;
+    }
+};
+
+int main() {
+    
+    Account *savingsAcc = new SavingsAccount("SA123", 1000, 5); // Account number, balance, interest rate
+    Account *checkingAcc = new CheckingAccount("CA456", 2000, 10); // Account number, balance, service charge
+
+    savingsAcc->displayInfo();
+    cout << "Interest: $" << savingsAcc->calculateInterest() << endl;
+
+    checkingAcc->displayInfo();
+    cout << "Interest: $" << checkingAcc->calculateInterest() << endl;
+
+    
+    CheckingAccount *checkAccPtr = dynamic_cast<CheckingAccount*>(checkingAcc);
+    if (checkAccPtr != nullptr) {
+        checkAccPtr->deductServiceCharge();
+        cout << "Balance after service charge deduction: $" << checkAccPtr->calculateInterest() << endl;
+    }
+
+    // Deleting objects
+    delete savingsAcc;
+    delete checkingAcc;
+
+    return 0;
+}
