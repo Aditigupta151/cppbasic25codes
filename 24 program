@@ -1,0 +1,42 @@
+// program for class template of employee
+#include <iostream>
+#include <string>
+
+template<typename T>
+class Employee {
+private:
+    T id;
+    std::string name;
+    double salary;
+public:
+    Employee(T empId, const std::string& empName, double empSalary)
+        : id(empId), name(empName), salary(empSalary) {}
+
+    void display() const {
+        std::cout << "Employee ID: " << id << std::endl;
+        std::cout << "Name: " << name << std::endl;
+        std::cout << "Salary: " << salary << std::endl;
+    }
+
+    void raiseSalary(double percent) {
+        salary *= (1 + percent / 100);
+    }
+};
+
+int main() {
+    // Creating an employee object with integer ID
+    Employee<int> emp1(101, "anshika", 50000.0);
+    emp1.display();
+    emp1.raiseSalary(10);
+    std::cout << "After raise:\n";
+    emp1.display();
+    
+    // Creating an employee object with string ID
+    Employee<std::string> emp2("EMP202", "prena", 60000.0);
+    emp2.display();
+    emp2.raiseSalary(8);
+    std::cout << "After raise:\n";
+    emp2.display();
+
+    return 0;
+}
